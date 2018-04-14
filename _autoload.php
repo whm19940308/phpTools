@@ -51,33 +51,7 @@ function dump() {
  */
 function dd() {
 
-    $args = func_get_args();
-    foreach ($args as $val) {
-        echo '<pre style="color: red">';
-        var_dump($val);
-        echo '</pre>';
-    }
+    dump();
     exit;
-
-}
-
-
-function t($name = ''){
-
-    static $_modules = array();
-    if (isset($_modules[$name]))
-    {
-        return $_modules[$name];
-    }
-    $model = TOOLS_ROOT . strtolower($name) . 'Tools.php';
-    if (!(is_file($model)))
-    {
-        exit(' Model ' . $name . ' Not Found!');
-    }
-    require_once $model;
-    $class_name = ucfirst($name).'Tools';
-    $_modules[$name] = new $class_name();
-
-    return $_modules[$name];
 
 }

@@ -32,6 +32,7 @@ $objDemo = new AutoloadClass();
 
 
 /**
+ * 支持多个参数
  * 格式化打印数据
  */
 function dump() {
@@ -47,6 +48,7 @@ function dump() {
 
 
 /**
+ * 支持多个参数
  * 格式化打印数据 下断点
  */
 function dd() {

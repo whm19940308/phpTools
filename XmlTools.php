@@ -4,35 +4,56 @@ header('content-type:text/html;charset=utf-8');
 
 class XmlTools{
 
-    /*
-	* 将xml转换成数组
-	* $xml_str是xml字符串
-	*/
-	function  xmlToArray($xml_str)
-	{
-		//禁止XML实体扩展攻击	
-		libxml_disable_entity_loader(true);
-		//拒绝包含HTML结构(避免出现html解析攻击);
-		if (preg_match('/(\<\!DOCTYPE|\<\!ENTITY)/i', $string)) {
-			return false;
+
+	
+    function xmlToArray($xml){
+
+        //禁止引用外部xml实体
+
+        libxml_disable_entity_loader(true);
+
+        $xmlstring = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
+
+        $val = json_decode(json_encode($xmlstring),true);
+
+        return $val;
+
+    }
+
+	
+	function array2xml($arr, $level = 1) {
+	$s = $level == 1 ? "<xml>" : '';
+	foreach ($arr as $tagname => $value) {
+		if (is_numeric($tagname)) {
+			$tagname = $value['TagName'];
+			unset($value['TagName']);
 		}
-		
-		//返回的数组对象
-		$result=array();
-		
-		//LIBXML_NOCDATA - 将 CDATA 设置为文本节点,微信支付的xml,可以自己定义
-		$xmlobj=simplexml_load_string($xml_str, 'SimpleXMLElement',LIBXML_NOCDATA);
-		
-		//是否是SimpleXMLElement对象
-		if($xmlobj instanceof  SimpleXMLElement)
-		{
-			$result=json_decode(json_encode($xmlobj),true);
-
+		if (!is_array($value)) {
+			$s .= "<{$tagname}>" . (!is_numeric($value) ? '<![CDATA[' : '') . $value . (!is_numeric($value) ? ']]>' : '') . "</{$tagname}>";
+		} else {
+			$s .= "<{$tagname}>" . array2xml($value, $level + 1) . "</{$tagname}>";
 		}
-
-		return $result;
-
 	}
+	$s = preg_replace("/([\x01-\x08\x0b-\x0c\x0e-\x1f])+/", ' ', $s);
+	return $level == 1 ? $s . "</xml>" : $s;
+}
 
+function xml2array($xml) {
+	if (empty($xml)) {
+		return array();
+	}
+	$result = array();
+	$xmlobj = isimplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
+	if($xmlobj instanceof SimpleXMLElement) {
+		$result = json_decode(json_encode($xmlobj), true);
+		if (is_array($result)) {
+			return $result;
+		} else {
+			return '';
+		}
+	} else {
+		return $result;
+	}
+}
 
 }

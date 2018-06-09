@@ -1,11 +1,24 @@
 <?php
 
 require_once './_autoload.php';
-
-
-$date = new DateTools();
-dump($date->getSomeZeroTimeStamp());
+require_once './functions.php';
 
 
 
-dump($_SERVER);
+$array = new ArrayTools();
+
+$arr = array(
+    array(
+        'id' => 1,
+        'name' => 'sb'
+    ),
+    array(
+        'id' => 2,
+        'name' => 'sb2'
+    ),
+);
+
+$data = $array->convertArrKey($arr, 'name');
+
+dump($data);
+dd($data);

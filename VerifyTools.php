@@ -28,16 +28,16 @@ class VerifyTools{
 
 
     // 说明： 验证邮箱格式
-    function isValidEmail($email)
+     function isValidEmail($email)
     {
-        $check = 0;
+        $check = false;
         if(filter_var($email,FILTER_VALIDATE_EMAIL))
         {
-            $check = 1;
+            $check = true;
         }
         return $check;
     }
-    /*
+    /**
     $email = "blog@koonk.com";
     $check = is_validemail($email);
     echo $check;
@@ -91,7 +91,7 @@ class VerifyTools{
      */
     function checkMobile($mobile){
 
-        if(preg_match('/1[34578]\d{9}$/',$mobile))
+        if(preg_match('/1[123456789]\d{9}$/',$mobile))
             return true;
         return false;
 

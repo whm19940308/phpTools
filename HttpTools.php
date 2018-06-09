@@ -21,4 +21,20 @@ class HttpTools{
     }
 
 
+    // 说明：获取当前页域名的URL
+    // echo getDomainName();
+    function getDomainName()
+    {
+        $pageURL = 'http';
+        if (!empty($_SERVER['HTTPS'])) {$pageURL .= "s";}
+        $pageURL .= "://";
+        if ($_SERVER["SERVER_PORT"] != "80") {
+            $pageURL .= $_SERVER["SERVER_NAME"].":";
+        } else {
+            $pageURL .= $_SERVER["SERVER_NAME"];
+        }
+        return $pageURL;
+    }
+
+
 }

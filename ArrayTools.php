@@ -64,6 +64,9 @@ class ArrayTools{
     }
 
 
+
+
+
     /**
      * @param $arr
      * @param int $level
@@ -212,6 +215,51 @@ class ArrayTools{
         }
         return $new_array;
 
+    }
+
+
+    /**
+     * @param $arr
+     * @param $key_name
+     * @return array
+     * 将数据库中查出的列表以指定的 id 作为数组的键名
+     */
+    function convertArrKey($arr, $key_name)
+    {
+        $arr2 = array();
+        foreach($arr as $key => $val){
+            $arr2[$val[$key_name]] = $val;
+        }
+        return $arr2;
+    }
+
+
+    /**
+     * @param $arr
+     * @param $key_name
+     * @return array
+     * 将数据库中查出的列表以指定的 id 作为数组的键名
+     */
+    function _convertArrKey($array, $key_name)
+    {
+        $re = array();
+        $arr = array();
+        foreach($array as $a) {
+            $tmp_v = $a;
+            unset($tmp_v[$key_name]);
+            if(isset($re[$a[$key_name]])) {
+                $re[$a[$key_name]][] = $tmp_v;
+            }else{
+                $re[$a[$key_name]] = array($tmp_v);
+            }
+        }
+        foreach($re as $key=>$val){
+            $arr[]=array(
+                $key_name => $key,
+                'goods' => $val
+            );
+        }
+        return $arr;
     }
 
 

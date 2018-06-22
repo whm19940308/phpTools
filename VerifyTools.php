@@ -2,6 +2,11 @@
 
 header('content-type:text/html;charset=utf-8');
 
+/**
+ * 校验工具类，如验证ip、手机、邮箱等
+ * Class VerifyTools
+ */
+
 class VerifyTools{
 
 
@@ -91,7 +96,7 @@ class VerifyTools{
      */
     function checkMobile($mobile){
 
-        if(preg_match('/1[123456789]\d{9}$/',$mobile))
+        if(preg_match('/1[0123456789]\d{9}$/',$mobile))
             return true;
         return false;
 
@@ -119,5 +124,9 @@ class VerifyTools{
     {
         return isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] && $_SERVER['HTTPS'] != 'off';
     }
+
+
+
+
 
 }

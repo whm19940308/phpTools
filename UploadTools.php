@@ -3,6 +3,11 @@
 
 header("Content-Type:text/html; charset=utf-8");
 
+/**
+ * 上传文件工具类
+ * Class Upload
+ */
+
 class Upload{
 
     public $upload_name;                    //上传文件名

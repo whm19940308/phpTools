@@ -1,5 +1,11 @@
 <?php
 
+header('content-type:text/html;charset=utf-8');
+
+/**
+ * 与服务器相关的工具类
+ * Class ServerTools
+ */
 
 class ServerTools{
 
@@ -39,7 +45,6 @@ class ServerTools{
     /**
      * IE浏览器判断
      */
-
     function isIE() {
 
         $useragent = strtolower($_SERVER['HTTP_USER_AGENT']);
@@ -54,7 +59,7 @@ class ServerTools{
     }
 
 
-	function getip() {
+	function getIp() {
 		
 		$ip = '';
 		$ip = $_SERVER['REMOTE_ADDR'];

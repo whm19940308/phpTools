@@ -2,6 +2,11 @@
 
 header('content-type:text/html;charset=utf-8');
 
+/**
+ * 加密工具类
+ * Class EncryptTools
+ */
+
 class EncryptTools{
 
 

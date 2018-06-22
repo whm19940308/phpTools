@@ -2,6 +2,11 @@
 
 header('content-type:text/html;charset=utf-8');
 
+/**
+ * 文件工具类
+ * Class FileTools
+ */
+
 class FileTools{
 
 

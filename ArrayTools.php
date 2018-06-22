@@ -1,6 +1,12 @@
 <?php
 
+
 header('content-type:text/html;charset=utf-8');
+
+/**
+ * 数组工具类
+ * Class ArrayTools
+ */
 
 class ArrayTools{
 

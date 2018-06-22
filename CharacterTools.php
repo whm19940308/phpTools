@@ -1,7 +1,11 @@
 <?php
 
 header('content-type:text/html;charset=utf-8');
-// 字母类
+
+/**
+ * 英文字母工具类
+ * Class CharacterTools
+ */
 
 class CharacterTools{
 

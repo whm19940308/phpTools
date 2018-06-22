@@ -2,6 +2,11 @@
 
 header('content-type:text/html;charset=utf-8');
 
+/**
+ * 字符串相关操作的工具类
+ * Class StringTools
+ */
+
 class StringTools{
 
     // 说明： 字符串截取

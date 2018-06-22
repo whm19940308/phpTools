@@ -2,6 +2,11 @@
 
 header('content-type:text/html;charset=utf-8');
 
+/**
+ * 与http协议相关的工具类
+ * Class HttpTools
+ */
+
 class HttpTools{
 
 

@@ -2,6 +2,11 @@
 
 header('content-type:text/html;charset=utf-8');
 
+/**
+ * 聚合数据发送手机验证码工具类
+ * Class SendCode
+ */
+
 class SendCode
 {
 

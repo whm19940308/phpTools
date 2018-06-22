@@ -2,6 +2,11 @@
 
 header('content-type:text/html;charset=utf-8');
 
+/**
+ * 数字工具类
+ * Class NumberTools
+ */
+
 class NumberTools{
 
 

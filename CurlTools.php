@@ -2,6 +2,11 @@
 
 header('content-type:text/html;charset=utf-8');
 
+/**
+ * 跟curl相关的工具类
+ * Class CurlsTools
+ */
+
 class CurlsTools{
 
 

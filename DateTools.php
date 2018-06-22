@@ -5,6 +5,11 @@ header('content-type:text/html;charset=utf-8');
 //设置中国时间为默认时区
 date_default_timezone_set('PRC');
 
+/**
+ * 时间工具类
+ * Class DateTools
+ */
+
 class DateTools{
 
     /**

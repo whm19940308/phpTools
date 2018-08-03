@@ -131,7 +131,6 @@ class ArrayTools{
 
     /**
      * 多个数组的笛卡尔积
-     *
      * @param unknown_type $data
      */
     function combineDika() {

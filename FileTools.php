@@ -263,5 +263,42 @@ class FileTools{
         return @rmdir($dir);
 
     }
+
+    
+    /**
+     * @desc Base64字符串生成图片文件,自动解析格式
+     * @param $base64
+     * @param $path
+     * @param $filename
+     * @return array
+     */
+    public function createBase64($base64, $path, $filename) {
+        
+        $result = array();
+        //匹配base64字符串格式
+        if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64, $result)) {
+            
+            //保存最终的图片格式
+            $postfix = $result[2];
+            $base64 = base64_decode(substr(strstr($base64, ','), 1));
+            $filename = $filename . '.' . $postfix;
+            $path = $path . $filename;
+            //创建图片
+            if (file_put_contents($path, $base64)) {
+                $result['state'] = 1;
+                $result['filename'] = $filename;
+            } else {
+                $result['state'] = 2;
+                $result['err'] = 'Create img failed!';
+            }
+        } else {
+            $result['state'] = 2;
+            $result['err'] = 'Not base64 char!';
+        }
+
+        return $result;
+        
+    }
+
     
 }

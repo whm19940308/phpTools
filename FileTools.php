@@ -127,7 +127,7 @@ class FileTools{
      * @param	array	$dirs		传入的目录
      * @return	array	返回目录列表
      */
-    function dirTree($dir, $parentid = 0, $dirs = array()) {
+    function getDirTree($dir, $parentid = 0, $dirs = array()) {
 
         global $id;
         if ($parentid == 0) $id = 0;
@@ -136,14 +136,14 @@ class FileTools{
             if (is_dir($v)) {
                 $id++;
                 $dirs[$id] = array('id'=>$id,'parent_id'=>$parentid, 'name'=>basename($v), 'dir'=>$v.'/');
-                $dirs = $this->dirTree($v.'/', $id, $dirs);
+                $dirs = $this->getDirTree($v.'/', $id, $dirs);
             }
         }
         return $dirs;
 
     }
     //    echo '<pre>';
-    //    var_dump(dirTree('/home/wwwroot/'));
+    //    var_dump(getDirTree('/home/wwwroot/'));
 
     
     /**

@@ -160,17 +160,15 @@ class FileTools{
     }
     /**
      * 创建目录
-     *
      * @param	string	$path	路径
      * @param	string	$mode	属性
-     * @return	string	如果已经存在则返回true，否则为flase
+     * @return	string	如果已经存在则返回true，否则为 false
      */
     function dirCreate($path, $mode = 0777) {
         
         if(is_dir($path)){
             return TRUE;
         }
-        $ftp_enable = 0;
         $path = $this->dirPath($path);
         $temp = explode('/', $path);
         $cur_dir = '';
@@ -303,11 +301,11 @@ class FileTools{
 
 
     /**
-     * @param $size
+     * @param $size 文件字节
      * @return string
-     * 文件字节转大小 K/M
+     * @desc 文件字节转具体大小 'B', 'KB', 'MB', 'GB', 'TB'
      */
-    public function format_file_size($size){
+    public function formatFile_Size($size){
 
         $units = array(' B', ' KB', ' MB', ' GB', ' TB');
         for ($i = 0; $size >= 1024 && $i < 4; $i++){

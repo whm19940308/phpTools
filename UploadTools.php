@@ -8,7 +8,7 @@ header("Content-Type:text/html; charset=utf-8");
  * Class Upload
  */
 
-class Upload{
+class UploadTools{
 
     public $upload_name;                    //上传文件名
     public $upload_tmp_name;                //上传临时文件名

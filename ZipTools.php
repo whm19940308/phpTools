@@ -30,6 +30,7 @@ class ZipTools{
         $file_tools = new FileTools();
         $path = $file_tools->dirPath($path);
 
+
         // 判断是不是目录，是的话递归进入
         if(is_dir($path)) {
             $handler = opendir($path); //打开当前文件夹由$path指定。
@@ -69,6 +70,10 @@ class ZipTools{
         //将文件名和路径转成windows系统默认的gb2312编码，否则将会读取不到
         $filename = iconv("utf-8","gb2312",$filename);
         $path = iconv("utf-8","gb2312",$path);
+
+        if (!file_exists($filename)) {
+            return false;
+        }
 
         $zip = new ZipArchive;
         if ($zip->open($filename) === TRUE) {//中文文件名要使用ANSI编码的文件格式

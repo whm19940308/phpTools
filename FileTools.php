@@ -151,7 +151,7 @@ class FileTools{
      * @param	string	$path	路径
      * @return	string	路径
      */
-    function dirPath($path) {
+    public function dirPath($path) {
         
         $path = str_replace('\\', '/', $path);
         if(substr($path, -1) != '/') $path = $path.'/';

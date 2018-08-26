@@ -3,10 +3,10 @@ whmblog自定义php工具类，实现把php项目开发中常用的方法进行�
 
 // 使用示例
 // 引入两个核心文件
-require_once './_autoload.php';
-require_once './functions.php';
+require_once './_autoload.php';  
+require_once './functions.php';  
 
 
-// 如调用DateTools工具类里的方法，调用示例如下
-$date_tools = new DateTools();
+// 如调用DateTools工具类里的方法，调用示例如下  
+$date_tools = new DateTools();  
 var_dump($date_tools->getSomeZeroTimeStamp($str=''));

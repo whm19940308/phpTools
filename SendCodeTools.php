@@ -24,7 +24,7 @@ class SendCode
 
 
         if (empty($mobile)) {
-            $this->show_json(-4,'手机号不能为空');
+            $this->showJson(-4,'手机号不能为空');
         }
 
         $code = mt_rand(100000,999999);
@@ -43,15 +43,15 @@ class SendCode
             if($error_code == 0){
                 //状态为0，说明短信发送成功
                 $data['code'] = $code;
-                $this->show_json(1, $data);
+                $this->showJson(1, $data);
             }else{
                 //状态非0，说明失败
                 $msg = $result['reason'];
-                $this->show_json(-3, "短信发送失败(".$error_code.")：".$msg);
+                $this->showJson(-3, "短信发送失败(".$error_code.")：".$msg);
             }
         }else{
             //返回内容异常，以下可根据业务逻辑自行修改
-            $this->show_json(-3, '请求发送短信失败');
+            $this->showJson(-3, '请求发送短信失败');
         }
 
     }
@@ -99,7 +99,7 @@ class SendCode
     }
 
 
-    public function show_json($status = 1, $return = NULL) {
+    public function showJson($status = 1, $return = NULL) {
 
         $ret = array('status' => $status);
 

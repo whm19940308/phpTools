@@ -9,4 +9,4 @@ require_once './functions.php';
 
 // 如调用DateTools工具类里的方法，调用示例如下  
 $date_tools = new DateTools();  
-var_dump($date_tools->getSomeZeroTimeStamp($str=''));
+var_dump($date_tools->getSomeZeroTimeStamp('today'));

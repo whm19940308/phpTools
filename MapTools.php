@@ -60,7 +60,7 @@ class MapTools{
      */
     public function GetDistance($lat1, $lng1, $lat2, $lng2, $len_type = 1, $decimal = 2) {
 
-        $pi = 3.1415926000000001;
+        $pi = pi(); // 圆周率
         $er = 6378.1369999999997;
         $radLat1 = ($lat1 * $pi) / 180;
         $radLat2 = ($lat2 * $pi) / 180;

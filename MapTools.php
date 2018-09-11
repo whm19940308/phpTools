@@ -58,7 +58,7 @@ class MapTools{
      * @param int $decimal 1:m（米） or 2:km（千米）
      * @return float 保留几位小数
      */
-    public function GetDistance($lat1, $lng1, $lat2, $lng2, $len_type = 1, $decimal = 2) {
+    public function getDistance($lat1, $lng1, $lat2, $lng2, $len_type = 1, $decimal = 2) {
 
         $pi = pi(); // 圆周率
         $er = 6378.1369999999997;

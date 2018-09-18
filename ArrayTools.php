@@ -245,7 +245,7 @@ class ArrayTools{
      * @return array
      * 将数据库中查出的列表以指定的 id 作为数组的键名
      */
-    function _convertArrKey($array, $key_name)
+    function _convertArrKey($array, $key_name, $key_name_two)
     {
         $re = array();
         $arr = array();
@@ -261,7 +261,8 @@ class ArrayTools{
         foreach($re as $key=>$val){
             $arr[]=array(
                 $key_name => $key,
-                'goods' => $val
+                $key_name_two => $val
+//                'goods' => $val
             );
         }
         return $arr;

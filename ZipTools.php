@@ -10,11 +10,6 @@ header('content-type:text/html;charset=utf-8');
 class ZipTools{
 
 
-    /**
-     * @desc 对相应目录文件进行压缩
-     * @param $path
-     * @param $zip
-     **/
     //    使用示例
     //    $zip = new ZipArchive();
     //    $path = $_SERVER['DOCUMENT_ROOT'];
@@ -24,12 +19,16 @@ class ZipTools{
     //    addFileToZip($path, $zip); // 调用方法，对要打包的根目录进行操作，并将ZipArchive的对象传递给方法
     //    $zip->close(); // 关闭处理的zip文件
     //    }
+    /**
+     * @desc 对相应目录文件进行压缩
+     * @param $path
+     * @param $zip
+     **/
     public function addFileToZip($path,$zip){
 
         // 转化 \ 为 / ，适应 windows
         $file_tools = new FileTools();
         $path = $file_tools->dirPath($path);
-
 
         // 判断是不是目录，是的话递归进入
         if(is_dir($path)) {
@@ -55,16 +54,17 @@ class ZipTools{
     }
 
 
-    /**
-     * @desc 对相应目录文件进行压缩
-     * @param $path
-     * @param $zip
-     **/
+
     // php 从zip压缩文件中提取文件
     // 使用示例：
     // $filename = $_SERVER['DOCUMENT_ROOT'].'/unzip.zip';
     // $path = $_SERVER['DOCUMENT_ROOT'].'/unzip';
     // unZip($filename,$path );
+    /**
+     * @desc 对相应目录文件进行压缩
+     * @param $path
+     * @param $zip
+     **/
     public function unZip($filename = '', $path = ''){
 
         //将文件名和路径转成windows系统默认的gb2312编码，否则将会读取不到

@@ -17,7 +17,7 @@
 class VersionTools{
 
     /**
-     * 将版本转为数字
+     * @desc 将版本转为数字
      * @param  String $version 版本
      * @return Int
      */
@@ -34,7 +34,7 @@ class VersionTools{
     }
 
     /**
-     * 将数字转为版本
+     * @desc 将数字转为版本
      * @param  Int     $version_code 版本的数字表示
      * @return String
      */
@@ -53,7 +53,7 @@ class VersionTools{
     }
 
     /**
-     * 检查版本格式是否正确
+     * @desc 检查版本格式是否正确
      * @param  String  $version 版本
      * @return Boolean
      */
@@ -65,7 +65,7 @@ class VersionTools{
     }
 
     /**
-     * 比较两个版本的值
+     * @desc 比较两个版本的值
      * @param  String  $version1  版本1
      * @param  String  $version2  版本2
      * @return Int                -1:1<2, 0:相等, 1:1>2

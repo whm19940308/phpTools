@@ -11,8 +11,7 @@ class VerifyTools{
 
 
     /**
-     * 说明：判断是否为合法的ip地址
-     * 判断是否为合法的ip地址
+     * @desc 判断是否为合法的ip地址
      * @param string $ip ip地址
      * @return bool|int 不合法则返回false，合法则返回4（IPV4）或6（IPV6）
      */
@@ -32,8 +31,12 @@ class VerifyTools{
     }
 
 
-    // 说明： 验证邮箱格式
-     function isValidEmail($email)
+    /**
+     * @desc 验证邮箱格式
+     * @param $email
+     * @return bool
+     */
+    public function isValidEmail($email)
     {
         $check = false;
         if(filter_var($email,FILTER_VALIDATE_EMAIL))
@@ -42,16 +45,10 @@ class VerifyTools{
         }
         return $check;
     }
-    /**
-    $email = "blog@koonk.com";
-    $check = is_validemail($email);
-    echo $check;
-    //If the output is 1, then email is valid.
-    */
 
 
     /**
-     * 判断是否为手机访问
+     * @desc 判断是否为手机访问
      * @return  boolean
      */
     function isMobile() {
@@ -77,7 +74,7 @@ class VerifyTools{
     }
 
     /**
-     * 判断是否为微信访问
+     * @desc 判断是否为微信访问
      * @return boolean
      */
     function isWeiXin(){
@@ -91,7 +88,7 @@ class VerifyTools{
 
 
     /**
-     * 检查手机号码格式
+     * @desc 检查手机号码格式
      * @param $mobile 手机号码
      */
     function checkMobile($mobile){
@@ -104,7 +101,7 @@ class VerifyTools{
 
 
     /**
-     * 检查固定电话
+     * @desc 检查固定电话
      * @param $mobile
      * @return bool
      */
@@ -117,16 +114,13 @@ class VerifyTools{
     }
 
     /**
-     * 当前请求是否是https
+     * @desc 当前请求是否是https
      * @return type
      */
-    function isHttps()
+    public function isHttps()
     {
         return isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] && $_SERVER['HTTPS'] != 'off';
     }
-
-
-
 
 
 }

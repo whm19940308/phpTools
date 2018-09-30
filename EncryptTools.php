@@ -10,7 +10,11 @@ header('content-type:text/html;charset=utf-8');
 class EncryptTools{
 
 
-    // 说明：加密uid
+    /**
+     * @desc 加密uid
+     * @param $uid
+     * @return string
+     */
     function setEncryptUid($uid){
 
         //vendor('Encrypt.XDeode');
@@ -20,7 +24,12 @@ class EncryptTools{
 
     }
 
-    // 说明：解密uid
+
+    /**
+     * @desc 加密uid
+     * @param $uid
+     * @return int
+     */
     function getEncryptUid($uid){
 
 //        vendor('Encrypt.XDeode');

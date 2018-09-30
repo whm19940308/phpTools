@@ -9,9 +9,14 @@ header('content-type:text/html;charset=utf-8');
 
 class NumberTools{
 
-
-    // 不足时前页补零
-    public function fillZero($len, $number){
+    
+    /**
+     * @desc 不足时几位数时，前面补零
+     * @param $len
+     * @param $number
+     * @return string
+     */
+    public function fillZero($len = 0, $number = 0){
 
         return sprintf("%0".$len."d", $number);//生成4位数，不足前面补0
 
@@ -19,22 +24,22 @@ class NumberTools{
 
 
     /**
-     * 转换字节数为其他单位
-     * @param	string	$filesize	字节大小
+     * @desc 转换字节数为其他单位
+     * @param	string	$file_size	字节大小
      * @return	string	返回大小
      */
-    function sizeCount($filesize) {
+    function sizeCount($file_size = 0) {
 
-        if ($filesize >= 1073741824) {
-            $filesize = round($filesize / 1073741824 * 100) / 100 .' GB';
-        } elseif ($filesize >= 1048576) {
-            $filesize = round($filesize / 1048576 * 100) / 100 .' MB';
-        } elseif($filesize >= 1024) {
-            $filesize = round($filesize / 1024 * 100) / 100 . ' KB';
+        if ($file_size >= 1073741824) {
+            $file_size = round($file_size / 1073741824 * 100) / 100 .' GB';
+        } elseif ($file_size >= 1048576) {
+            $file_size = round($file_size / 1048576 * 100) / 100 .' MB';
+        } elseif($file_size >= 1024) {
+            $file_size = round($file_size / 1024 * 100) / 100 . ' KB';
         } else {
-            $filesize = $filesize.' Bytes';
+            $file_size = $file_size.' Bytes';
         }
-        return $filesize;
+        return $file_size;
 
     }
 

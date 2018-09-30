@@ -11,7 +11,7 @@ class ServerTools{
 
 
     /**
-     * 判断当前服务器系统
+     * @desc 判断当前服务器系统
      * @return string
      */
     public static function getOS()
@@ -29,7 +29,7 @@ class ServerTools{
      * @desc 在实际WEB开发中，可以用PHP memory_get_usage()比较各个方法占用内存的高低，来选择使用哪种占用内存小的方法
      * @return string
      */
-    function getMemoryUsage() {
+    public function getMemoryUsage() {
 
         $memory  = ( ! function_exists('memory_get_usage')) ? '0' : round(memory_get_usage()/1024/1024, 2).'MB';
         return $memory;
@@ -42,16 +42,18 @@ class ServerTools{
     //    echo '回到正常内存：'.getMemoryUsage();
 
 
-    /**
-     * IE浏览器判断
-     */
-    function isIE() {
 
-        $useragent = strtolower($_SERVER['HTTP_USER_AGENT']);
-        if((strpos($useragent, 'opera') !== false) || (strpos($useragent, 'konqueror') !== false)){
+    /**
+     * @desc IE浏览器判断
+     * @return bool
+     */
+    public function isIE() {
+
+        $user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+        if((strpos($user_agent, 'opera') !== false) || (strpos($user_agent, 'konqueror') !== false)){
             return false;
         }
-        if(strpos($useragent, 'msie ') !== false){
+        if(strpos($user_agent, 'msie') !== false){
             return true;
         }
         return false;
@@ -59,9 +61,12 @@ class ServerTools{
     }
 
 
-	function getIp() {
-		
-		$ip = '';
+    /**
+     * @desc 获取客户端地址ip
+     * @return string
+     */
+    public function getIp() {
+	    
 		$ip = $_SERVER['REMOTE_ADDR'];
 		if(isset($_SERVER['HTTP_CDN_SRC_IP'])) {
 			$ip = $_SERVER['HTTP_CDN_SRC_IP'];

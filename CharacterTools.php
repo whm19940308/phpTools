@@ -11,17 +11,17 @@ class CharacterTools{
 
 
     /**
-     * @name php获取中文字符拼音首字母
+     * @desc  php获取中文字符拼音首字母
      * @param $str
-     * @return null|string
+     * @return string
      */
     function getFirstCharter($str)
     {
         if (empty($str)) {
-            return '';
+            return '#';
         }
-        $fchar = ord($str{0});
-        if ($fchar >= ord('A') && $fchar <= ord('z')) return strtoupper($str{0});
+        $f_char = ord($str{0});
+        if ($f_char >= ord('A') && $f_char <= ord('z')) return strtoupper($str{0});
         $s1 = iconv('UTF-8', 'gb2312', $str);
         $s2 = iconv('gb2312', 'UTF-8', $s1);
         $s = $s2 == $str ? $s1 : $str;
@@ -49,7 +49,7 @@ class CharacterTools{
         if ($asc >= -12556 && $asc <= -11848) return 'X';
         if ($asc >= -11847 && $asc <= -11056) return 'Y';
         if ($asc >= -11055 && $asc <= -10247) return 'Z';
-        return null;
+        return '#';
     }
 
 

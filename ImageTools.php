@@ -15,7 +15,7 @@ class ImageTools{
      * @param $base64 可以转成图片的base64字符串
      * @param $path 绝对路径
      * @param $filename 生成的文件名
-     * @return array 返回的数据，当返回status==1时，代表base64生成图片成功
+     * @return array 返回的数据，当返回status==1时，代表base64生成图片成功，其他则表示失败
      */
     public function base64ToImage($base64, $path, $filename) {
         

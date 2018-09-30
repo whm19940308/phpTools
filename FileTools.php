@@ -10,7 +10,7 @@ header('content-type:text/html;charset=utf-8');
 class FileTools{
 
     /**
-     * 替换相应的字符
+     * @desc 替换相应的字符
      * @param string $path 路径
      * @return string
      */
@@ -20,7 +20,7 @@ class FileTools{
     }
 
     /**
-     * 判断目录是否为空
+     * @desc 判断目录是否为空
      * @param string $dir
      * @return boolean
      */
@@ -39,21 +39,25 @@ class FileTools{
         return false;
     }
 
+
     /**
-     * 文件重命名
-     * @param string $oldname
-     * @param string $newname
+     * @desc 文件重命名
+     * @param $old_name
+     * @param $new_name
+     * @return bool
      */
-    public function rename($oldname,$newname)
+    public function rename($old_name,$new_name)
     {
-        if(($newname!=$oldname) && is_writable($oldname))
+        if(($new_name!=$old_name) && is_writable($old_name))
         {
-            return rename($oldname,$newname);
+            return rename($old_name,$new_name);
         }
     }
 
+
     /**
-     * 文件保存路径处理
+     * @desc 文件保存路径处理
+     * @param $path
      * @return string
      */
     public function checkPath($path)
@@ -61,9 +65,10 @@ class FileTools{
         return (preg_match('/\/$/',$path)) ? $path : $path . '/';
     }
     
+
     /**
-     * 说明：实现文件下载的功能
-     * @param string $file_path 绝对路径
+     * desc 实现文件下载的功能
+     * @param $file_path 绝对路径
      */
     static public function downFile($file_path) {
 
@@ -92,35 +97,38 @@ class FileTools{
     }
 
 
+
     /**
-     * 说明：判断 文件/目录 是否可写（取代系统自带的 is_writeable 函数）
-     * @param string $file 文件/目录
-     * @return boolean
+     * @desc 判断 文件/目录 是否可写（取代系统自带的 is_writeable 函数）
+     * @param $file
+     * @return int
      */
     public function isWriteAble($file) {
+
         if (is_dir($file)){
             $dir = $file;
             if ($fp = @fopen("$dir/test.txt", 'w')) {
                 @fclose($fp);
                 @unlink("$dir/test.txt");
-                $writeable = 1;
+                $write_able = 1;
             } else {
-                $writeable = 0;
+                $write_able = 0;
             }
         } else {
             if ($fp = @fopen($file, 'a+')) {
                 @fclose($fp);
-                $writeable = 1;
+                $write_able = 1;
             } else {
-                $writeable = 0;
+                $write_able = 0;
             }
         }
-        return $writeable;
+        return $write_able;
+
     }
 
 
     /**
-     * 保存数组变量到php文件
+     * @desc 保存数组变量到php文件
      * @param string $path 保存路径
      * @param mixed $value 要保存的变量
      * @return boolean 保存成功返回true,否则false
@@ -134,7 +142,7 @@ class FileTools{
 
 
     /**
-     * 转化格式化的字符串为数组
+     * @desc 转化格式化的字符串为数组
      * @param string $tag 要转化的字符串,格式如:"id:2;cid:1;order:post_date desc;"
      * @return array 转化后字符串
      * <pre>
@@ -161,7 +169,7 @@ class FileTools{
 
 
     /**
-     * 获取文件扩展名
+     * @desc 获取文件扩展名
      * @param string $filename
      */
     function getFileExtension($filename){
@@ -198,7 +206,7 @@ class FileTools{
 
     
     /**
-     * 转化 \ 为 /
+     * @desc 转化 \ 为 /
      * @param	string	$path	路径
      * @return	string	路径
      */
@@ -210,7 +218,7 @@ class FileTools{
         
     }
     /**
-     * 创建目录
+     * @desc 创建目录
      * @param	string	$path	路径
      * @param	string	$mode	属性
      * @return	string	如果已经存在则返回true，否则为 false
@@ -236,26 +244,25 @@ class FileTools{
         
     }
     /**
-     * 拷贝目录及下面所有文件
-     *
-     * @param	string	$fromdir	原路径
-     * @param	string	$todir		目标路径
+     * @desc 拷贝目录及下面所有文件
+     * @param	string	$from_dir	原路径
+     * @param	string	$to_dir		目标路径
      * @return	string	如果目标路径不存在则返回false，否则为true
      */
-    function dirCopy($fromdir, $todir) {
+    function dirCopy($from_dir, $to_dir) {
 
-        $fromdir = $this->dirPath($fromdir);
-        $todir = $this->dirPath($todir);
-        if (!is_dir($fromdir)){
+        $from_dir = $this->dirPath($from_dir);
+        $to_dir = $this->dirPath($to_dir);
+        if (!is_dir($from_dir)){
             return FALSE;
         }
-        if (!is_dir($todir)) {
-            $this->dirCreate($todir);
+        if (!is_dir($to_dir)) {
+            $this->dirCreate($to_dir);
         }
-        $list = glob($fromdir.'*');
+        $list = glob($from_dir.'*');
         if (!empty($list)) {
             foreach($list as $v) {
-                $path = $todir.basename($v);
+                $path = $to_dir.basename($v);
                 if(is_dir($v)) {
                     $this->dirCopy($v, $path);
                 } else {
@@ -269,7 +276,7 @@ class FileTools{
     }
 
     /**
-     * 获取完整文件名
+     * @desc 获取完整文件名
      * @param string $fn 路径
      * @return string
      */
@@ -280,8 +287,7 @@ class FileTools{
     }
 
     /**
-     * 列出目录下所有文件
-     *
+     * @desc 列出目录下所有文件
      * @param	string	$path		路径
      * @param	string	$exts		扩展名
      * @param	array	$list		增加的文件列表
@@ -304,7 +310,7 @@ class FileTools{
     }
 
     /**
-     * 删除目录及目录下面的所有文件
+     * @desc 删除目录及目录下面的所有文件
      * @param	string	$dir	路径
      * @return	bool	如果成功则返回 TRUE，失败则返回 FALSE
      */
@@ -324,7 +330,7 @@ class FileTools{
 
 
     /**
-     * 关闭文件操作
+     * @desc 关闭文件操作
      * @param string $path
      * @return boolean
      */
@@ -372,11 +378,11 @@ class FileTools{
 
 
     /**
+     * @desc 文件字节转具体大小 array("B", "KB", "MB", "GB", "TB", "PB","EB","ZB","YB")， 默认转成M
      * @param $size 文件字节
      * @return string
-     * @desc 文件字节转具体大小 array("B", "KB", "MB", "GB", "TB", "PB","EB","ZB","YB")， 默认转成M
      */
-    public function byteFormat($size, $dec=2 )
+    public function byteFormat($size, $dec = 2 )
     {
         $units = array("B", "KB", "MB", "GB", "TB", "PB","EB","ZB","YB");
         $pos = 0;
@@ -390,7 +396,7 @@ class FileTools{
 
 
     /**
-     * 删除文件
+     * @desc 删除文件
      * @param string $path
      * @return boolean
      */
@@ -405,7 +411,7 @@ class FileTools{
     
 
     /**
-     * 文件操作(复制/移动)
+     * @desc 文件操作(复制/移动)
      * @param string $old_path 指定要操作文件路径(需要含有文件名和后缀名)
      * @param string $new_path 指定新文件路径（需要新的文件名和后缀名）
      * @param string $type 文件操作类型
@@ -437,7 +443,7 @@ class FileTools{
     }
 
     /**
-     * 文件夹操作(复制/移动)
+     * @desc 文件夹操作(复制/移动)
      * @param string $old_path 指定要操作文件夹路径
      * @param string $aimDir 指定新文件夹路径
      * @param string $type 操作类型
@@ -485,7 +491,7 @@ class FileTools{
 
 
     /**
-     * 返回指定文件和目录的信息
+     * @desc 返回指定文件和目录的信息
      * @param string $file
      * @return ArrayObject
      */
@@ -519,7 +525,7 @@ class FileTools{
     }
 
     /**
-     * 返回关于打开文件的信息
+     * @desc: 返回关于打开文件的信息
      * @param $file
      * @return ArrayObject
      * 数字下标     关联键名（自 PHP 4.0.6）     说明
@@ -533,9 +539,9 @@ class FileTools{
      * 7     size     文件大小的字节数
      * 8     atime     上次访问时间（Unix 时间戳）
      * 9     mtime     上次修改时间（Unix 时间戳）
-     * 10     ctime     上次改变时间（Unix 时间戳）
-     * 11     blksize     文件系统 IO 的块大小
-     * 12     blocks     所占据块的数目
+     * 10    ctime     上次改变时间（Unix 时间戳）
+     * 11    blksize     文件系统 IO 的块大小
+     * 12    blocks     所占据块的数目
      */
     public function openInfo($file)
     {
@@ -547,7 +553,7 @@ class FileTools{
 
 
     /**
-     * 改变文件和目录的相关属性
+     * @desc: 改变文件和目录的相关属性
      * @param string $file 文件路径
      * @param string $type 操作类型 group  mode  ower
      * @param string $ch_info 操作信息
@@ -569,7 +575,7 @@ class FileTools{
 
 
     /**
-     * 取得上传文件信息
+     * @desc: 取得上传文件信息
      * @param $file file属性信息
      * @return array
      */
@@ -588,7 +594,7 @@ class FileTools{
 
 
     /**
-     * 设置文件命名规则
+     * @desc: 设置文件命名规则
      * @param string $type 命名规则
      * @param string $filename 文件名
      * @return string
@@ -609,7 +615,7 @@ class FileTools{
 
 
     /**
-     * 创建指定路径下的指定文件
+     * @desc: 创建指定路径下的指定文件
      * @param string $path(需要包含文件名和后缀)
      * @param boolean $over_write 是否覆盖文件
      * @param int $time 设置时间。默认是当前系统时间
@@ -632,7 +638,7 @@ class FileTools{
 
 
     /**
-     * 读取文件操作
+     * @desc: 读取文件操作
      * @param string $file
      * @return boolean
      */
@@ -642,7 +648,7 @@ class FileTools{
     }
 
     /**
-     * 确定服务器的最大上传限制（字节数）
+     * @desc: 确定服务器的最大上传限制（字节数）
      * @return int 服务器允许的最大上传字节数
      */
     public function allowUploadSize()

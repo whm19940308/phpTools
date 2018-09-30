@@ -34,7 +34,8 @@ class StrFilterTools{
         $this->_replacement = $replacement;
     }
 
-    /**替换非法字符
+    /**
+     * @desc 替换非法字符
      * @param  String $content 要替換的字符串
      * @return String          替換后的字符串
      */
@@ -60,7 +61,8 @@ class StrFilterTools{
         return $content;
     }
 
-    /**检查是否含有非法自符
+    /**
+     * @desc 检查是否含有非法自符
      * @param  String $content 字符串
      * @return boolean
      */
@@ -85,7 +87,8 @@ class StrFilterTools{
         return true;
     }
 
-    /**保护白名单
+    /**
+     * @desc 保护白名单
      * @param  String $content 字符串
      * @return String
      */
@@ -98,7 +101,8 @@ class StrFilterTools{
         return $content;
     }
 
-    /**还原白名单
+    /**
+     * @desc 还原白名单
      * @param  String $content
      * @return String
      */
@@ -109,7 +113,8 @@ class StrFilterTools{
         return $content;
     }
 
-    /**白名单 key还原为value
+    /**
+     * @desc 白名单 key还原为value
      * @param  Array  $matches 匹配white_list的key
      * @return String white_list val
      */

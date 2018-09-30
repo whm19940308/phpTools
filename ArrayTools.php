@@ -12,11 +12,11 @@ class ArrayTools{
 
 
     /**
-     * 说明： 二维数组去掉重复值
+     * @desc： 二维数组去掉重复值
      * @param array $array2D
      * @return multitype:
      */
-    function arrayUniqueFb($array2D){
+    public function arrayUniqueFb($array2D){
 
         $temp = array();
         foreach ($array2D as $v){
@@ -32,8 +32,12 @@ class ArrayTools{
     }
 
 
-    //说明： 去除二维数组中的重复项
-    function removeArrayDuplicate($array){
+    /**
+     * @desc 去除二维数组中的重复项
+     * @param $array
+     * @return array
+     */
+    public function removeArrayDuplicate($array){
         $result=array();
         for($i=0;$i<count($array);$i++){
             $source=$array[$i];
@@ -51,13 +55,12 @@ class ArrayTools{
 
 
     /**
-     * 二维数组根据字段进行排序
+     * @desc 二维数组根据字段进行排序
      * @params array $array 需要排序的二维数组
      * @params string $field 排序的字段
      * @params string $sort 排序顺序标志 SORT_DESC 降序；SORT_ASC 升序
      */
-
-    function arraySequence($array, $field, $sort = 'SORT_DESC')
+    public function arraySequence($array, $field, $sort = 'SORT_DESC')
     {
         $arrSort = array();
         foreach ($array as $uniqid => $row) {
@@ -71,14 +74,13 @@ class ArrayTools{
 
 
 
-
-
     /**
+     * @desc 数组转xml
      * @param $arr
      * @param int $level
      * @return mixed|string
      */
-    function arrayToXml($arr, $level = 1) {
+    public function arrayToXml($arr, $level = 1) {
 
         $s = $level == 1 ? "<xml>" : '';
         foreach ($arr as $tagname => $value) {
@@ -97,11 +99,11 @@ class ArrayTools{
 
 
     /**
-     * 过滤数组元素前后空格 (支持多维数组)
+     * @desc 过滤数组元素前后空格 (支持多维数组)
      * @param $array 要过滤的数组
      * @return array|string
      */
-    function trimArrayElement($array){
+    public function trimArrayElement($array){
 
         if(!is_array($array))
             return trim($array);
@@ -111,14 +113,14 @@ class ArrayTools{
 
 
     /**
-     * 将二维数组以元素的某个值作为键 并归类数组
+     * @desc 将二维数组以元素的某个值作为键 并归类数组
      * array( array('name'=>'aa','type'=>'pay'), array('name'=>'cc','type'=>'pay') )
      * array('pay'=>array( array('name'=>'aa','type'=>'pay') , array('name'=>'cc','type'=>'pay') ))
      * @param $arr 数组
      * @param $key 分组值的key
      * @return array
      */
-    function groupSameKey($arr,$key){
+    public function groupSameKey($arr,$key){
 
         $new_arr = array();
         foreach($arr as $k=>$v ){
@@ -129,11 +131,13 @@ class ArrayTools{
     }
 
 
+
     /**
-     * 多个数组的笛卡尔积
-     * @param unknown_type $data
+     * @desc 多个数组的笛卡尔积
+     * @param $data
+     * @return array
      */
-    function combineDika() {
+    public function combineDiKa() {
 
         $data = func_get_args();
         $data = current($data);
@@ -155,9 +159,10 @@ class ArrayTools{
 
 
     /**
-     * 两个数组的笛卡尔积
-     * @param unknown_type $arr1
-     * @param unknown_type $arr2
+     * @desc 两个数组的笛卡尔积
+     * @param $arr1
+     * @param $arr2
+     * @return array
      */
     function combineArray($arr1,$arr2) {
 
@@ -176,9 +181,10 @@ class ArrayTools{
     }
 
 
+
     /**
-     * 多维数组转化为一维数组
-     * @param 多维数组
+     * @desc 多维数组转化为一维数组
+     * @param $array 多维数组
      * @return array 一维数组
      */
     function arrayMulti2single($array)
@@ -196,13 +202,13 @@ class ArrayTools{
 
 
     /**
-     * 二维数组排序
+     * @二维数组排序
      * @param $arr
      * @param $keys
      * @param string $type
      * @return array
      */
-    function arrayMulti2sort($arr, $keys, $type = 'desc')
+    public function arrayMulti2sort($arr, $keys, $type = 'desc')
     {
 
         $key_value = $new_array = array();
@@ -229,7 +235,7 @@ class ArrayTools{
      * @return array
      * 将数据库中查出的列表以指定的 id 作为数组的键名
      */
-    function convertArrKey($arr, $key_name)
+    public function convertArrKey($arr, $key_name)
     {
         $arr2 = array();
         foreach($arr as $key => $val){
@@ -239,13 +245,15 @@ class ArrayTools{
     }
 
 
+
     /**
-     * @param $arr
+     * @desc 将数据库中查出的列表以指定的 id 作为数组的键名
+     * @param $array
      * @param $key_name
+     * @param $key_name_two
      * @return array
-     * 将数据库中查出的列表以指定的 id 作为数组的键名
      */
-    function _convertArrKey($array, $key_name, $key_name_two)
+    public function _convertArrKey($array, $key_name, $key_name_two)
     {
         $re = array();
         $arr = array();
@@ -270,7 +278,12 @@ class ArrayTools{
 
 
 
-    //PHP stdClass Object转array
+
+    /**
+     * @desc 对象转数组，PHP stdClass Object转array
+     * @param $array
+     * @return array
+     */
     public function object_array($array) {
 
         if(is_object($array)) {

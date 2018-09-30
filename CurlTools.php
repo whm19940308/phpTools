@@ -11,7 +11,7 @@ class CurlsTools{
 
 
     /**
-     * PHP get请求之发送数组
+     * @desc PHP get请求之发送数组
      * @param $url
      * @param array $param
      * @return mixed
@@ -35,7 +35,7 @@ class CurlsTools{
 
 
     /**
-     * PHP post请求之发送数组
+     * @desc PHP post请求之发送数组
      * @param $url
      * @param array $param
      * @return mixed
@@ -68,7 +68,7 @@ class CurlsTools{
 
 
     /**
-     * 使用curl获取远程数据
+     * @desc 使用curl获取远程数据
      * @param  string $url url连接路径
      * @return string      获取到的数据
      */
@@ -94,7 +94,7 @@ class CurlsTools{
 
 
     /**
-     * 异步将远程链接上的内容(图片或内容)写到本地
+     * @desc 异步将远程链接上的内容(图片或内容)写到本地
      * @param $url    远程地址
      * @param $saveName    保存在服务器上的文件名
      * @param $path    保存路径
@@ -145,9 +145,12 @@ class CurlsTools{
     //    var_dump($res);// 当返回为true时，代表成功，反之，为失败
 
 
-    // 使用代理抓取页面
-    // 为什么要使用代理进行抓取呢？以google为例吧，如果去抓google的数据，短时间内抓的很频繁的话，你就抓取不到了。
-    // google对你的ip地址做限制这个时候，你可以换代理重新抓。
+    /**
+     * @desc 使用代理抓取页面, 为什么要使用代理进行抓取呢？以google为例吧，如果去抓google的数据，短时间内抓的很频繁的话，你就抓取不到了
+     * @desc google对你的ip地址做限制这个时候，你可以换代理重新抓。
+     * @param $url
+     * @return mixed
+     */
     public function httpProxy($url){
 
         $ch = curl_init();
@@ -162,11 +165,17 @@ class CurlsTools{
         $result = curl_exec($ch);
         curl_close($ch);
 
+        return $result;
+
     }
 
 
-    // 继续保持本站session的调用
-    // 在实现用户同步登录的情况下需要共享session,如果要继续保持本站的session,那么要把sessionid放到http请求中
+
+    /**
+     * @desc 继续保持本站session的调用, 在实现用户同步登录的情况下需要共享session,如果要继续保持本站的session,那么要把session_id放到http请求中
+     * @param $url
+     * @return mixed
+     */
     public function httpSession($url){
 
         $session_str = session_name().'='.session_id().'; path=/; domain=.explame.com';
@@ -178,6 +187,8 @@ class CurlsTools{
         curl_setopt($ch, CURLOPT_COOKIE, $session_str);
         $result = curl_exec($ch);
         curl_close($ch);
+
+        return $result;
 
     }
 

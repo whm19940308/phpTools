@@ -10,10 +10,12 @@ header('content-type:text/html;charset=utf-8');
 class HttpTools{
 
 
-    // 说明：获取当前页面的URL
-    // echo getCurrentPageURL();
-    function getCurrentPageURL()
-    {
+    /**
+     * @desc 获取当前页面的URL
+     * @return string
+     */
+    function getCurrentPageURL(){
+
         $pageURL = 'http';
         if (!empty($_SERVER['HTTPS'])) {$pageURL .= "s";}
         $pageURL .= "://";
@@ -23,13 +25,17 @@ class HttpTools{
             $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
         }
         return $pageURL;
+
     }
 
 
-    // 说明：获取当前页域名的URL
-    // echo getDomainName();
-    function getDomainName()
-    {
+
+    /**
+     * @desc 获取当前页域名的URL
+     * @return string
+     */
+    function getDomainName(){
+
         $pageURL = 'http';
         if (!empty($_SERVER['HTTPS'])) {$pageURL .= "s";}
         $pageURL .= "://";
@@ -39,6 +45,7 @@ class HttpTools{
             $pageURL .= $_SERVER["SERVER_NAME"];
         }
         return $pageURL;
+
     }
 
 

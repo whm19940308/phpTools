@@ -9,12 +9,10 @@ header('content-type:text/html;charset=utf-8');
 
 class StringTools{
 
-    // 说明： 字符串截取
-    // 字符串截取是一个开发者都要面对的基本技能，毕竟你要处理数据，
-    // 这里的关键，$charset="utf-8"，对中文支持是很重要的！不然出现一些？号，就要挨批了！
-    // 代码如下，支持中文和其他编码
+
     /**
-     * 字符串截取，支持中文和其他编码
+     * @desc 字符串截取，支持中文和其他编码, 字符串截取是一个开发者都要面对的基本技能，毕竟你要处理数据，支持中文和其他编码
+     * @desc 这里的关键，$charset="utf-8"，对中文支持是很重要的！不然出现一些？号，就要挨批了！
      * @param [string] $str  [字符串]
      * @param integer $start [起始位置]
      * @param integer $length [截取长度]
@@ -45,7 +43,12 @@ class StringTools{
     */
 
 
-    // 说明： PHP利用正则表达式实现手机号码中间4位用星号替换显示
+
+    /**
+     * @desc PHP利用正则表达式实现手机号码中间4位用星号替换显示
+     * @param $phone
+     * @return null|string|string[]
+     */
     function hideTel($phone){
         $IsWhat = preg_match('/(0[0-9]{2,3}[-]?[2-9][0-9]{6,7}[-]?[0-9]?)/i',$phone); //固定电话
         if($IsWhat == 1){
@@ -62,7 +65,7 @@ class StringTools{
 
 
     /**
-     * 说明：获取指定文件的后缀名
+     * @desc 获取指定文件的后缀名
      * @param array $input 输入的数组
      * @param string $columnKey 指定数组列明
      * @param null $indexKey
@@ -85,9 +88,10 @@ class StringTools{
     */
 
 
+
     /**
-     * 说明：判断字符串是utf-8 还是gb2312
-     * @param unknown $str
+     * @desc 判断字符串是utf-8 还是gb2312
+     * @param $str
      * @param string $default
      * @return string
      */
@@ -116,11 +120,12 @@ class StringTools{
     }
 
 
+
     /**
-     * utf-8和gb2312自动转化
-     * @param unknown $string
+     * @desc utf-8和gb2312自动转化
+     * @param $string
      * @param string $outEncoding
-     * @return unknown|string
+     * @return string
      */
     public static function safeEncoding($string,$outEncoding = 'UTF-8')
     {
@@ -159,9 +164,11 @@ class StringTools{
 
 
 
-    // desc https://www.whmblog.cn/php/40.html
-    // 将用户名进行处理，中间用星号表示
-    // 可用于中文
+    /**
+     * @desc 将用户名进行处理，中间用星号表示，可用于中文，https://www.whmblog.cn/php/40.html
+     * @param $user_name
+     * @return string
+     */
     public function subStrCut($user_name){
 
         //获取字符串长度
@@ -182,7 +189,7 @@ class StringTools{
 
 
     /**
-     * 随机字符串生成
+     * @desc 随机字符串生成
      * @param int $len 生成的字符串长度
      * @return string
      */
@@ -206,7 +213,7 @@ class StringTools{
 
 
     /**
-     * 随机字符
+     * @desc 随机字符
      * @param number $length 长度
      * @param string $type 类型
      * @param number $convert 转换大小写
@@ -248,8 +255,13 @@ class StringTools{
     }
 
 
+
     /**
-     *   实现中文字串截取无乱码的方法
+     * @desc 实现中文字串截取无乱码的方法
+     * @param $string
+     * @param $start
+     * @param $length
+     * @return string
      */
     function getSubstr($string, $start, $length) {
         if(mb_strlen($string,'utf-8')>$length){

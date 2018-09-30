@@ -72,7 +72,7 @@ class UploadTools{
 
     }
     /**
-     *获取文件扩展名
+     *@desc 获取文件扩展名
      *@param String $filename 要获取文件名的文件
      */
     public function getFileExt($filename){

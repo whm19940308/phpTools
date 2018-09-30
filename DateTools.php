@@ -44,7 +44,7 @@ class DateTools{
 
 
     /**
-     * 友好时间显示
+     * @desc 友好时间显示
      * @param $time
      * @return bool|string
      */
@@ -52,7 +52,7 @@ class DateTools{
     {
         if (!$time)
             return false;
-        $fdate = '';
+        $f_date = '';
         $d = time() - intval($time);
         $ld = $time - mktime(0, 0, 0, 0, 0, date('Y')); //得出年
         $md = $time - mktime(0, 0, 0, date('m'), 0, date('Y')); //得出月
@@ -62,45 +62,45 @@ class DateTools{
         $td = $time - mktime(0, 0, 0, date('m'), date('d') + 1, date('Y')); //明天
         $atd = $time - mktime(0, 0, 0, date('m'), date('d') + 2, date('Y')); //后天
         if ($d == 0) {
-            $fdate = '刚刚';
+            $f_date = '刚刚';
         } else {
             switch ($d) {
                 case $d < $atd:
-                    $fdate = date('Y年m月d日', $time);
+                    $f_date = date('Y年m月d日', $time);
                     break;
                 case $d < $td:
-                    $fdate = '后天' . date('H:i', $time);
+                    $f_date = '后天' . date('H:i', $time);
                     break;
                 case $d < 0:
-                    $fdate = '明天' . date('H:i', $time);
+                    $f_date = '明天' . date('H:i', $time);
                     break;
                 case $d < 60:
-                    $fdate = $d . '秒前';
+                    $f_date = $d . '秒前';
                     break;
                 case $d < 3600:
-                    $fdate = floor($d / 60) . '分钟前';
+                    $f_date = floor($d / 60) . '分钟前';
                     break;
                 case $d < $dd:
-                    $fdate = floor($d / 3600) . '小时前';
+                    $f_date = floor($d / 3600) . '小时前';
                     break;
                 case $d < $yd:
-                    $fdate = '昨天' . date('H:i', $time);
+                    $f_date = '昨天' . date('H:i', $time);
                     break;
                 case $d < $byd:
-                    $fdate = '前天' . date('H:i', $time);
+                    $f_date = '前天' . date('H:i', $time);
                     break;
                 case $d < $md:
-                    $fdate = date('m月d日 H:i', $time);
+                    $f_date = date('m月d日 H:i', $time);
                     break;
                 case $d < $ld:
-                    $fdate = date('m月d日', $time);
+                    $f_date = date('m月d日', $time);
                     break;
                 default:
-                    $fdate = date('Y年m月d日', $time);
+                    $f_date = date('Y年m月d日', $time);
                     break;
             }
         }
-        return $fdate;
+        return $f_date;
     }
 
 

@@ -10,22 +10,29 @@ header('content-type:text/html;charset=utf-8');
 class XmlTools{
 
 
-
+    /**
+     * @desc xml转数组
+     * @param $xml
+     * @return mixed
+     */
     public function xmlToArray($xml){
 
         //禁止引用外部xml实体
-
         libxml_disable_entity_loader(true);
-
-        $xmlstring = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
-
-        $val = json_decode(json_encode($xmlstring),true);
+        $xml_string = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
+        $val = json_decode(json_encode($xml_string),true);
 
         return $val;
 
     }
 
 
+    /**
+     * @desc 数组转xml
+     * @param $arr
+     * @param int $level
+     * @return null|string|string[]
+     */
     public function array2xml($arr, $level = 1) {
 
         $s = $level == 1 ? "<xml>" : '';
@@ -45,6 +52,11 @@ class XmlTools{
 
     }
 
+    /**
+     * @desc xml转数组
+     * @param $xml
+     * @return array|mixed|string
+     */
     public function xml2array($xml) {
 
         if (empty($xml)) {

@@ -10,8 +10,13 @@ header('content-type:text/html;charset=utf-8');
 class MapTools{
 
 
-    // 通过经纬度获取 详细地址
-    // http://lbsyun.baidu.com/index.php?title=webapi/guide/changeposition
+
+    /**
+     * @desc 通过经纬度获取 详细地址 http://lbsyun.baidu.com/index.php?title=webapi/guide/changeposition
+     * @param $longitude 经度
+     * @param $latitude 纬度
+     * @return bool|string
+     */
     public function getAddressByLngLat($longitude,$latitude){
 
         // 经纬度 目前我的手机的定位
@@ -56,7 +61,7 @@ class MapTools{
      * @param $lng2 经度2
      * @param int $len_type
      * @param int $decimal 1:m（米） or 2:km（千米）
-     * @return float 保留几位小数
+     * @return float 两个距离保留几位小数点
      */
     public function getDistance($lat1, $lng1, $lat2, $lng2, $len_type = 1, $decimal = 2) {
 

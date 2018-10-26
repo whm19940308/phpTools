@@ -26,7 +26,7 @@ class ImageTools{
             $postfix = $result[2];
             $base64 = base64_decode(substr(strstr($base64, ','), 1));
             $filename .= '.' . $postfix;
-            $path = $path . $filename;
+            $path .= $filename;
             //创建图片
             if (file_put_contents($path, $base64)) {
                 $res['status'] = 1;

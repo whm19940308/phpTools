@@ -45,4 +45,25 @@ class ImageTools{
     }
 
 
+    /**
+     * @desc 将图片转成base64字符串
+     * @param string $filename 图片地址
+     * @return string
+     */
+    public function imageToBase64($filename = ''){
+
+        $base64 = '';
+        if(file_exists($filename)){
+            if($fp = fopen($filename,"rb", 0))
+            {
+                $img = fread($fp,filesize($filename));
+                fclose($fp);
+                $base64 = chunk_split(base64_encode($img));
+            }
+        }
+        return $base64;
+
+    }
+
+
 }

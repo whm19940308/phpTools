@@ -25,7 +25,7 @@ class ImageTools{
             //保存最终的图片格式
             $postfix = $result[2];
             $base64 = base64_decode(substr(strstr($base64, ','), 1));
-            $filename = $filename . '.' . $postfix;
+            $filename .= '.' . $postfix;
             $path = $path . $filename;
             //创建图片
             if (file_put_contents($path, $base64)) {

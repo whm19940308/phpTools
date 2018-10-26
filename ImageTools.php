@@ -45,6 +45,7 @@ class ImageTools{
     }
 
 
+
     /**
      * @desc 将图片转成base64字符串
      * @param string $filename 图片地址

@@ -59,7 +59,7 @@ class ImageTools{
             {
                 $img = fread($fp,filesize($filename));
                 fclose($fp);
-                $base64 = chunk_split(base64_encode($img));
+                $base64 = 'data:image/jpg/png/gif;base64,'.chunk_split(base64_encode($img));
             }
         }
         return $base64;

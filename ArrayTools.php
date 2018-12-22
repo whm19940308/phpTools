@@ -18,16 +18,18 @@ class ArrayTools{
      */
     public function arrayUniqueFb($array2D){
 
-        $temp = array();
-        foreach ($array2D as $v){
-            $v=join(',',$v);//降维,也可以用implode,将一维数组转换为用逗号连接的字符串
-            $temp[]=$v;
+        $data = array();
+        if(!empty($array2D)){
+            foreach ($array2D as $v){
+                $v=join(',',$v);//降维,也可以用implode,将一维数组转换为用逗号连接的字符串
+                $data[]=$v;
+            }
+            $data = array_unique($data);//去掉重复的字符串,也就是重复的一维数组
+            foreach ($data as $k => $v){
+                $data[$k]=explode(',',$v);//再将拆开的数组重新组装
+            }
         }
-        $temp=array_unique($temp);//去掉重复的字符串,也就是重复的一维数组
-        foreach ($temp as $k => $v){
-            $temp[$k]=explode(',',$v);//再将拆开的数组重新组装
-        }
-        return $temp;
+        return $data;
 
     }
 
@@ -266,11 +268,10 @@ class ArrayTools{
                 $re[$a[$key_name]] = array($tmp_v);
             }
         }
-        foreach($re as $key=>$val){
+        foreach($re as $key => $val){
             $arr[]=array(
                 $key_name => $key,
                 $key_name_two => $val
-//                'goods' => $val
             );
         }
         return $arr;
@@ -294,6 +295,29 @@ class ArrayTools{
             }
         }
         return $array;
+
+    }
+
+
+    /**
+     * @desc 替换数组中的某个value值
+     * @param string $find 要替换的字符串
+     * @param string $replace 要被替换成什么的字符串
+     * @param array $list 要替换的数组
+     * @return array|mixed
+     */
+    public function arrayValueReplace($find = '', $replace = '', $list = []){
+
+        if(empty($find)){
+            return $list;
+        }
+        $find = ":".json_encode($find);
+        $replace = ":".json_encode($replace);
+        $str = json_encode($list);
+        $replace_str = str_replace($find, $replace, $str);
+        $list = json_decode($replace_str, true);
+
+        return $list;
 
     }
 

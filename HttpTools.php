@@ -49,4 +49,24 @@ class HttpTools{
     }
 
 
+    /**
+     * @desc 解析url并得到url中的参数
+     * @param string $url
+     * @return array
+     */
+    function convert_url_query($url = '')
+    {
+        $arr = parse_url($url);
+        $query_arr = explode('&', $arr['query']);
+        $params = array();
+        if($query_arr){
+            foreach ($query_arr as $param) {
+                $item = explode('=', $param);
+                $params[$item[0]] = $item[1];
+            }
+        }
+        return $params;
+    }
+
+
 }

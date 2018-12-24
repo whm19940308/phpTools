@@ -68,5 +68,4 @@ class HttpTools{
         return $params;
     }
 
-
 }

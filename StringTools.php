@@ -49,7 +49,7 @@ class StringTools{
      * @param $phone
      * @return null|string|string[]
      */
-    function hideTel($phone){
+    public function hideTel($phone){
         $IsWhat = preg_match('/(0[0-9]{2,3}[-]?[2-9][0-9]{6,7}[-]?[0-9]?)/i',$phone); //固定电话
         if($IsWhat == 1){
             return preg_replace('/(0[0-9]{2,3}[-]?[2-9])[0-9]{3,4}([0-9]{3}[-]?[0-9]?)/i','$1****$2',$phone);
@@ -71,7 +71,7 @@ class StringTools{
      * @param null $indexKey
      * @return array
      */
-    function getFileExt($file) {
+    public function getFileExt($file) {
         //SPLFileInfo类的getExtension方法，需要5.3.6+版本
         if(version_compare(PHP_VERSION,'5.3.6','>=')){
             $fileInfo = new splFileInfo($file);
@@ -219,7 +219,7 @@ class StringTools{
      * @param number $convert 转换大小写
      * @return string
      */
-    function random($length=6, $type='string', $convert=0){
+    public function random($length=6, $type='string', $convert=0){
 
         $config = array(
             'number'=>'1234567890',
@@ -249,7 +249,7 @@ class StringTools{
      * @param $needle 要查找的字符
      * @return bool
      */
-    function strExists($haystack, $needle)
+    public function strExists($haystack, $needle)
     {
         return !(strpos($haystack, $needle) === FALSE);
     }
@@ -263,7 +263,7 @@ class StringTools{
      * @param $length
      * @return string
      */
-    function getSubstr($string, $start, $length) {
+    public function getSubstr($string, $start, $length) {
         if(mb_strlen($string,'utf-8')>$length){
             $str = mb_substr($string, $start, $length,'utf-8');
             return $str.'...';
@@ -278,7 +278,7 @@ class StringTools{
      * @param $mobile
      * @return mixed
      */
-    function mobileHide($mobile){
+    public function mobileHide($mobile){
 
         return substr_replace($mobile,'****',3,4);
 
@@ -286,26 +286,43 @@ class StringTools{
 
 
     /**
-     * 获取整条字符串汉字拼音首字母
-     * @param $zh
-     * @return string
+     * @desc 自动转换字符集 支持数组转换
+     * @param $string 需要转换的字符串或数组
+     * @param string $from 以什么字符集编码开始转换
+     * @param string $to 转换成什么字符集编码
+     * @return array|string
      */
-    function pinyin_long($zh){
-        $ret = "";
-        $s1 = iconv("UTF-8","gb2312", $zh);
-        $s2 = iconv("gb2312","UTF-8", $s1);
-        if($s2 == $zh){$zh = $s1;}
-        for($i = 0; $i < strlen($zh); $i++){
-            $s1 = substr($zh,$i,1);
-            $p = ord($s1);
-            if($p > 160){
-                $s2 = substr($zh,$i++,2);
-                $ret .= getFirstCharter($s2);
-            }else{
-                $ret .= $s1;
-            }
+    public static function autoCharset($string, $from='gbk', $to='utf-8') {
+
+        $from = strtoupper($from) == 'UTF8' ? 'utf-8' : $from;
+        $to = strtoupper($to) == 'UTF8' ? 'utf-8' : $to;
+        if (strtoupper($from) === strtoupper($to) || empty($string) || (is_scalar($string) && !is_string($string))) {
+            //如果编码相同或者非字符串标量则不转换
+            return $string;
         }
-        return $ret;
+        if (is_string($string)) {
+            if (function_exists('mb_convert_encoding')) {
+                return mb_convert_encoding($string, $to, $from);
+            } elseif (function_exists('iconv')) {
+                return iconv($from, $to, $string);
+            } else {
+                return $string;
+            }
+        } elseif (is_array($string)) {
+            foreach ($string as $key => $val) {
+                $_key = self::autoCharset($key, $from, $to);
+                $string[$_key] = self::autoCharset($val, $from, $to);
+                if ($key != $_key){
+                    unset($string[$key]);
+                }
+
+            }
+            return $string;
+        }
+        else {
+            return $string;
+        }
+
     }
 
 

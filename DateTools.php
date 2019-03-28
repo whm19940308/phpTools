@@ -103,6 +103,32 @@ class DateTools{
         return $f_date;
     }
 
+    /**
+     * @desc 获取当前时间的前7天
+     * @return array
+     */
+    function getLast7Days(){
 
+        $begin = strtotime(date('Y-m-d', strtotime('-6 days')));  // ? 7天前
+        $today_time = strtotime(date('Y-m-d'));  // ? 7天前
+        $now_time = time();
+        $weeks_arr = array();
+        $weeks_arr['date'] = array();
+        $weeks_arr['weeks'] = array();
+        $weeks_arr['day'] = array();
+        $weeks_array = array("日","一","二","三","四","五","六"); // 先定义一个数组
+        $day_second = 3600*24;
+        for ($i = $begin; $i < $now_time; $i = $i + $day_second){
+            if($i != $today_time){
+                array_push($weeks_arr['date'], $i);
+            }else{
+                array_push($weeks_arr['date'], $now_time);
+            }
+            array_push($weeks_arr['weeks'], '星期'.$weeks_array[date('w', $i)]);
+            array_push($weeks_arr['day'], date('Y-m-d', $i));
+        }
+        return $weeks_arr;
+
+    }
 
 }

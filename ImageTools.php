@@ -89,7 +89,7 @@ class ImageTools{
             'https://www.baidu.com/img/bd_logo1.png'
         );
 
-        if(empty($pic_list)){
+        if(empty($pic_list) || !is_array($pic_list)){
             return false;
         }
 
@@ -200,7 +200,6 @@ class ImageTools{
                     $resource = imagecreatefromgif($pic_path.$format);
                     break;
             }
-
             // $start_x,$start_y copy图片在背景中的位置
             // 0,0 被copy图片的位置   $pic_w,$pic_h copy后的高度和宽度
             // // 最后两个参数为原始图片宽度和高度，倒数两个参数为copy时的图片宽度和高度

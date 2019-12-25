@@ -224,8 +224,8 @@ class ImageTools{
 
     /**
      * @desc 判断一个url是否是图片链接
-     * @param string $img_url, true 是 , false 否
-     * @return bool
+     * @param string $img_url
+     * @return bool, true 是 , false 否
      */
     public function isImgUrl($img_url = ''){
 
@@ -236,13 +236,10 @@ class ImageTools{
             if(!empty($header['Content-Type'])){
                 if(strstr($header['Content-Type'], 'image/')){
                     return true;
-                }else{
-                    return false;
                 }
-            }else{
-                return false;
             }
         }
+        return false;
 
     }
 

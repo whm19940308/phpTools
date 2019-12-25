@@ -18,7 +18,7 @@ class ImageTools{
      * @return array 返回的数据，当返回status==1时，代表base64生成图片成功，其他则表示失败
      */
     public function base64ToImage($base64, $path, $filename) {
-        
+
         $res = array();
         //匹配base64字符串格式
         if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64, $result)) {
@@ -41,7 +41,7 @@ class ImageTools{
         }
 
         return $res;
-        
+
     }
 
 
@@ -221,6 +221,30 @@ class ImageTools{
 
     }
 
+
+    /**
+     * @desc 判断一个url是否是图片链接, true 是 , false 否
+     * @param string $img_url
+     * @return bool
+     */
+    public function isImgUrl($img_url = ''){
+
+        if(preg_match('/.*(\.png|\.jpg|\.jpeg|\.gif)$/', $img_url)){
+            return true;
+        }else{
+            $header = get_headers($img_url, 1);
+            if(!empty($header['Content-Type'])){
+                if(preg_match('/.*(\.png|\.jpg|\.jpeg|\.gif)$/', $header['Content-Type'])){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+
+    }
 
 
 }

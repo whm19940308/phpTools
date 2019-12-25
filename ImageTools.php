@@ -223,8 +223,8 @@ class ImageTools{
 
 
     /**
-     * @desc 判断一个url是否是图片链接, true 是 , false 否
-     * @param string $img_url
+     * @desc 判断一个url是否是图片链接
+     * @param string $img_url, true 是 , false 否
      * @return bool
      */
     public function isImgUrl($img_url = ''){

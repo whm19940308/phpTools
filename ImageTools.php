@@ -229,12 +229,12 @@ class ImageTools{
      */
     public function isImgUrl($img_url = ''){
 
-        if(preg_match('/.*(\.png|\.jpg|\.jpeg|\.gif)$/', $img_url)){
+        if(!preg_match('/.*(\.png|\.jpg|\.jpeg|\.gif)$/', $img_url)){
             return true;
         }else{
             $header = get_headers($img_url, 1);
             if(!empty($header['Content-Type'])){
-                if(preg_match('/.*(\.png|\.jpg|\.jpeg|\.gif)$/', $header['Content-Type'])){
+                if(strstr($header['Content-Type'], 'image/')){
                     return true;
                 }else{
                     return false;

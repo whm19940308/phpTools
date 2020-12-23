@@ -218,4 +218,18 @@ class DateTools{
     }
 
 
+   /**
+     * @desc  判断一个字符串是否为时间戳
+     * @param $timestamp  时间戳
+     * @return bool|int
+     */
+    function is_timestamp($timestamp) {
+        $timestamp = intval($timestamp);
+        if(strtotime(date('m-d-Y H:i:s', $timestamp)) === $timestamp) {
+            return $timestamp;
+        } else {
+            return false;
+        }
+    }
+
 }
